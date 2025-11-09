@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
 Scenario-Based Government Contract Monitoring
-Detects patterns of cronyism, emergency contracting, and wealth consolidation
-Based on specific scenarios to watch for over the next 18 months
+Detects unusual patterns in emergency contracting and competitive bidding
+Pattern analysis tool for independent verification and oversight
 """
 
 import sqlite3
@@ -27,28 +27,27 @@ class ScenarioAlert:
     risk_score: int
 
 class ScenarioMonitor:
-    """Monitor for specific corruption/cronyism scenarios"""
+    """Monitor for unusual contracting patterns and anomalies"""
     
-    def __init__(self, db_path: str = "government_monitor.db"):
+    def __init__(self, db_path: str = "government_monitor.db", custom_watchlist: List[str] = None):
         self.db_path = db_path
         
-        # Companies and networks to specifically watch
-        self.trump_connected_companies = [
-            'TRUTH SOCIAL', 'TRUMP MEDIA', 'DJT', 'TRUMP ORGANIZATION',
-            'KUSHNER', 'TRUMP TOWER', 'MAR-A-LAGO', 'BEDMINSTER'
-        ]
+        # User-configurable watchlist (optional)
+        # Users can provide their own list of companies to monitor
+        self.custom_watchlist = custom_watchlist or []
         
-        self.tech_consolidation_companies = [
+        # Industry categories for pattern analysis (non-accusatory)
+        self.tech_sector_companies = [
             'PALANTIR', 'CLEARVIEW', 'ANDURIL', 'FACEBOOK', 'META',
             'GOOGLE', 'ALPHABET', 'AMAZON', 'MICROSOFT', 'ORACLE'
         ]
         
-        self.defense_industrial_complex = [
+        self.defense_sector_companies = [
             'BOEING', 'LOCKHEED MARTIN', 'RAYTHEON', 'NORTHROP GRUMMAN',
             'GENERAL DYNAMICS', 'BAE SYSTEMS', 'L3HARRIS'
         ]
         
-        self.financial_consolidation = [
+        self.financial_sector_companies = [
             'JPMORGAN', 'GOLDMAN SACHS', 'BLACKROCK', 'VANGUARD',
             'FIDELITY', 'BANK OF AMERICA', 'WELLS FARGO'
         ]
@@ -96,11 +95,11 @@ class ScenarioMonitor:
             evidence = []
             risk_score = 0
             
-            # Check for Trump-connected companies
+            # Check for custom watchlist companies (if configured)
             company_upper = row['recipient_name'].upper()
-            if any(connected in company_upper for connected in self.trump_connected_companies):
-                evidence.append("Company appears connected to Trump network")
-                risk_score += 40
+            if self.custom_watchlist and any(watched in company_upper for watched in self.custom_watchlist):
+                evidence.append("Company on custom watchlist")
+                risk_score += 30
             
             # Check for emergency procurement
             desc_lower = str(row['description']).lower()
@@ -233,15 +232,15 @@ class ScenarioMonitor:
             company_upper = row['recipient_name'].upper()
             desc_lower = str(row['description']).lower()
             
-            # Check for tech consolidation companies
-            if any(tech_co in company_upper for tech_co in self.tech_consolidation_companies):
-                evidence.append("Contract with major tech platform company")
+            # Check for tech sector companies
+            if any(tech_co in company_upper for tech_co in self.tech_sector_companies):
+                evidence.append("Contract with major tech sector company")
                 risk_score += 35
             
-            # Check for Trump-connected platforms
-            if any(trump_co in company_upper for trump_co in self.trump_connected_companies):
-                evidence.append("Contract with Trump-connected platform/media company")
-                risk_score += 45
+            # Check for custom watchlist platforms (if configured)
+            if self.custom_watchlist and any(watched_co in company_upper for watched_co in self.custom_watchlist):
+                evidence.append("Contract with watchlist company")
+                risk_score += 35
             
             # Data sovereignty language
             sovereignty_keywords = ['american data', 'data sovereignty', 'protect data', 'information security']
@@ -304,7 +303,7 @@ class ScenarioMonitor:
             desc_lower = str(row['description']).lower()
             
             # Check for major financial institutions
-            if any(fin_co in company_upper for fin_co in self.financial_consolidation):
+            if any(fin_co in company_upper for fin_co in self.financial_sector_companies):
                 evidence.append("Contract with major financial institution")
                 risk_score += 35
             
@@ -368,22 +367,22 @@ class ScenarioMonitor:
             
             company_upper = row['recipient_name'].upper()
             
-            # Check if company is in any connected network
-            connected_networks = []
-            if any(trump_co in company_upper for trump_co in self.trump_connected_companies):
-                connected_networks.append("Trump network")
-                risk_score += 50
+            # Check if company is in any monitored sector
+            monitored_sectors = []
+            if self.custom_watchlist and any(watched_co in company_upper for watched_co in self.custom_watchlist):
+                monitored_sectors.append("Custom watchlist")
+                risk_score += 40
             
-            if any(tech_co in company_upper for tech_co in self.tech_consolidation_companies):
-                connected_networks.append("Big Tech")
+            if any(tech_co in company_upper for tech_co in self.tech_sector_companies):
+                monitored_sectors.append("Tech sector")
                 risk_score += 30
             
-            if any(def_co in company_upper for def_co in self.defense_industrial_complex):
-                connected_networks.append("Defense Industrial Complex")
+            if any(def_co in company_upper for def_co in self.defense_sector_companies):
+                monitored_sectors.append("Defense sector")
                 risk_score += 25
             
-            if any(fin_co in company_upper for fin_co in self.financial_consolidation):
-                connected_networks.append("Financial consolidation")
+            if any(fin_co in company_upper for fin_co in self.financial_sector_companies):
+                monitored_sectors.append("Financial sector")
                 risk_score += 30
             
             if connected_networks:

@@ -1,6 +1,6 @@
-# 🔍 Government Contract Cronyism Monitor
+# 🔍 Government Contract Pattern Monitor
 
-A comprehensive monitoring system designed to detect corruption patterns, cronyism, and preferential treatment in federal government contracting.
+A comprehensive monitoring system designed to detect unusual patterns and anomalies in federal government contracting for independent verification and oversight.
 
 ## ⚠️ IMPORTANT: Before You Start
 
@@ -26,13 +26,20 @@ cp token.txt.example token.txt
 python3 monitor.py  # Choose option 4 for Quick Status
 ```
 
-### ⚖️ Responsible Use
-This tool provides **independent verification** capabilities. It detects patterns that may warrant investigation:
-- ✅ Verify findings through multiple sources
-- ✅ Understand that pattern detection requires context
-- ✅ Use as one tool among many for oversight
-- ✅ Document and archive suspicious patterns
-- ⚠️ Patterns indicate areas for scrutiny, not proof of wrongdoing
+### ⚖️ Responsible Use & Legal Notice
+
+**⚠️ CRITICAL: This tool performs statistical pattern analysis ONLY**
+
+This tool detects unusual patterns in contracting data. **Patterns are NOT proof, evidence, or accusations.**
+
+- ✅ Verify all findings through multiple independent sources
+- ✅ Patterns may have legitimate explanations
+- ✅ Use for research and statistical oversight only
+- ✅ **Do NOT use pattern detections to make public accusations**
+- ⚠️ **Misuse for defamation may result in legal liability**
+- ⚠️ Users are solely responsible for their interpretations
+
+**By using this tool, you agree to the terms in [LICENSE](LICENSE).**
 
 ---
 
@@ -43,7 +50,7 @@ This tool provides **independent verification** capabilities. It detects pattern
 python3 monitor.py
 ```
 **Interactive menu with options:**
-1. **Full Cronyism Detection** - Complete analysis with pattern detection
+1. **Full Pattern Analysis** - Complete analysis with anomaly detection
 2. **Data Collection Only** - Update database without analysis  
 3. **Dashboard Only** - Launch web interface
 4. **Quick Status** - Show system status
@@ -52,7 +59,7 @@ python3 monitor.py
 ```bash
 python3 enhanced_dashboard.py
 ```
-Advanced cronyism-focused dashboard at: http://127.0.0.1:8080
+Advanced pattern analysis dashboard at: http://127.0.0.1:8080
 
 ### Original Dashboard
 ```bash
@@ -62,10 +69,10 @@ Classic interface at: http://127.0.0.1:8080
 
 ## 📊 What It Detects
 
-### 🚨 Cronyism Patterns
+### 🚨 Pattern Detection
 - **Emergency Procurement** - Contracts bypassing competition under "crisis" pretexts
 - **Rapid Accumulation** - Companies quickly receiving multiple contracts
-- **Watchlist Companies** - Trump network, Big Tech, connected entities
+- **High-Volume Recipients** - Companies receiving unusual contract volumes
 - **No-Bid Contracts** - Sole-source awards without competition
 - **Large Contract Alerts** - High-value deals requiring scrutiny
 
@@ -80,7 +87,7 @@ Classic interface at: http://127.0.0.1:8080
 ```
 GSA/
 ├── monitor.py                 # 🎯 MAIN INTERFACE (use this)
-├── enhanced_dashboard.py      # 🔍 ADVANCED CRONYISM DASHBOARD  
+├── enhanced_dashboard.py      # 🔍 ADVANCED PATTERN DASHBOARD  
 ├── dashboard_webapp.py        # 📊 Original dashboard
 ├── government_monitor.db      # 💾 Database (auto-created)
 ├── README.md                  # 📖 This documentation
@@ -99,7 +106,7 @@ GSA/
 
 ## 💾 System Status
 - **Multi-source data collection** from 7+ government sources
-- **Real-time pattern detection** for corruption scenarios
+- **Real-time pattern detection** for contracting anomalies
 - **Historical analysis** with 20+ years of data capability
 - **Interactive dashboards** with advanced visualizations
 
@@ -118,10 +125,10 @@ GSA/
 - **Emergency Pattern Detection** - Flags crisis-justified procurement
 - **Competition Analysis** - Identifies no-bid/sole-source patterns
 - **Timeline Analysis** - Detects unusual contract timing
-- **Risk Scoring** - Quantifies corruption likelihood
+- **Pattern Indicators** - Quantifies anomaly significance
 
 ### Dashboard Features
-- **Cronyism Summary Cards** - Key corruption metrics
+- **Pattern Summary Cards** - Key anomaly metrics
 - **Watchlist Company Table** - Tracked entities and their contracts
 - **Emergency Contract List** - No-bid and crisis-justified deals
 - **Agency Risk Analysis** - Risk scoring by government agency
@@ -163,7 +170,7 @@ cp token.txt.example token.txt
 ### Recommended Daily Workflow
 ```bash
 python3 monitor.py
-# Choose option 1: Full Cronyism Detection
+# Choose option 1: Full Pattern Analysis
 ```
 
 ### Automated Monitoring
@@ -284,7 +291,7 @@ sqlite3 government_monitor.db "SELECT COUNT(*) FROM contracts;"
 - **Multi-source monitoring** - 7+ government data sources
 - **Real-time pattern detection** - Immediate alerts on concerning developments
 - **Historical analysis** - 20+ years of data capability
-- **Scenario-specific detection** - Tailored for outlined corruption patterns
+- **Scenario-specific detection** - Tailored for unusual contracting patterns
 
 ### System Performance
 - **Clean file structure** - Organized and maintainable
@@ -301,14 +308,14 @@ sqlite3 government_monitor.db "SELECT COUNT(*) FROM contracts;"
 
 ## 🎯 Bottom Line
 
-This system transforms your ability to detect corruption by:
+This system transforms your ability to monitor contracting patterns by:
 1. **Monitoring 7+ government data sources** simultaneously
 2. **Pattern detection** specifically designed for your scenarios
 3. **Real-time alerting** on concerning developments
 4. **Historical analysis** to understand trend development
 5. **Evidence collection** for investigative follow-up
 
-**Perfect for detecting emergency acceleration, patriotic branding, information sovereignty, and financial consolidation schemes.**
+**Designed for monitoring emergency procurement, rapid contract accumulation, and unusual competitive patterns.**
 
 ---
 
@@ -333,18 +340,30 @@ This project is licensed under the MIT License - see [LICENSE](LICENSE) file for
 
 Found a bug or have a suggestion? Open an issue on GitHub. This tool is designed for independent watchdog use - improvements that enhance monitoring capabilities are welcome.
 
-## ⚖️ Disclaimer
+## ⚖️ Legal Disclaimer
 
-**This tool enables independent monitoring and verification.**
+**⚠️ IMPORTANT: READ BEFORE USE ⚠️**
 
-- ✅ Provides pattern detection for individual oversight
-- ✅ All data collected is already public government information
-- ✅ Designed for personal watchdog and verification purposes
-- ⚠️ Pattern detection identifies areas for scrutiny, not proof
-- ⚠️ Users responsible for their own analysis and conclusions
-- ⚠️ Verify all findings through multiple independent sources
+**This tool performs STATISTICAL PATTERN ANALYSIS only. It does NOT:**
+- ❌ Provide legal evidence or proof of wrongdoing
+- ❌ Make accusations against individuals or companies
+- ❌ Constitute professional investigation or legal findings
+- ❌ Replace verification through authoritative sources
 
-**Data accuracy depends on government reporting. This tool is one mechanism for checks at the individual level.**
+**Pattern Detection ≠ Proof of Misconduct**
+- Unusual patterns may have legitimate explanations
+- Professional investigation is required to establish wrongdoing
+- This tool identifies statistical anomalies for further review only
+
+**User Responsibilities:**
+- ✅ Verify all findings independently before taking action
+- ✅ Understand this is an analytical tool, not investigative authority
+- ✅ Do NOT use output to defame, harass, or make public accusations
+- ✅ Accept full legal responsibility for your use of this tool
+
+**Misuse of this software for defamation or false accusations may result in legal liability for the user.**
+
+All data is public government information. Data accuracy depends on government reporting.
 
 ## 🌟 Data Sources
 

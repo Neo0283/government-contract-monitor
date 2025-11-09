@@ -24,20 +24,50 @@ SOFTWARE.
 
 DISCLAIMER AND RESPONSIBLE USE:
 
+⚠️ IMPORTANT LEGAL NOTICE ⚠️
+
 This software is designed for independent monitoring, verification, and 
-individual watchdog purposes. Users of this software acknowledge:
+statistical pattern analysis of public contracting data. Users of this 
+software explicitly acknowledge and agree to the following:
 
-1. This tool provides pattern detection for personal oversight activities
-2. All findings require verification through multiple independent sources
-3. Pattern detection identifies areas for scrutiny, not proof of wrongdoing
-4. Users must respect API rate limits and terms of service of government APIs
-5. All data collected is already public government information
-6. This software enables distributed checks at the individual/community level
+1. **NOT LEGAL EVIDENCE**: This tool performs statistical pattern analysis 
+   only. Findings are NOT legal evidence, proof of wrongdoing, or accusations.
 
-The authors are not responsible for how users interpret or act upon data 
-collected by this tool. Users are solely responsible for their own analysis, 
-conclusions, and actions.
+2. **VERIFICATION REQUIRED**: All pattern detections, alerts, and indicators 
+   require independent verification through multiple authoritative sources 
+   before any conclusions are drawn.
 
-This is a monitoring tool for individual use. Any actions taken based on 
-findings from this software are the sole responsibility of the user.
+3. **PATTERNS ≠ PROOF**: The identification of unusual patterns does NOT 
+   constitute proof of corruption, fraud, cronyism, or illegal activity. 
+   Patterns may have legitimate explanations and require professional 
+   investigation.
+
+4. **NO ACCUSATIONS**: This tool does NOT make accusations against any 
+   individual, company, or organization. Users must not use this tool's 
+   output to defame, harass, or make public accusations.
+
+5. **PUBLIC DATA ONLY**: All data collected is already public government 
+   information. This tool merely aggregates and analyzes publicly available 
+   contracting records.
+
+6. **USER RESPONSIBILITY**: Users are SOLELY responsible for their own 
+   interpretations, conclusions, and any actions taken based on this tool's 
+   output.
+
+7. **NO LIABILITY**: The authors, contributors, and distributors of this 
+   software bear NO LIABILITY for misuse, misinterpretation, defamation 
+   claims, or any damages arising from use of this software.
+
+8. **LAWFUL USE ONLY**: Users must comply with all applicable laws, 
+   including but not limited to defamation, privacy, and data protection 
+   laws.
+
+BY USING THIS SOFTWARE, YOU AGREE THAT:
+- You will not use pattern detections as accusations or proof
+- You will independently verify all findings before taking action
+- You understand this is an analytical tool, not an investigative authority
+- You accept full legal responsibility for your use of this tool
+
+MISUSE OF THIS SOFTWARE FOR DEFAMATION, HARASSMENT, OR FALSE 
+ACCUSATIONS MAY RESULT IN LEGAL LIABILITY FOR THE USER.
 
