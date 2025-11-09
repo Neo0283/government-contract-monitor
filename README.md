@@ -12,8 +12,8 @@ A comprehensive monitoring system designed to detect corruption patterns, cronyi
 ### 📋 First-Time Setup
 ```bash
 # 1. Clone this repository
-git clone <your-repo-url>
-cd GSA
+git clone https://github.com/brcinque/government-contract-monitor.git
+cd government-contract-monitor
 
 # 2. Install dependencies
 pip3 install -r requirements.txt
