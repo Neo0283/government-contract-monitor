@@ -127,6 +127,38 @@ class CronyismDashboard:
         conn.close()
         return df.to_dict('records')
     
+    def get_recent_contracts_table(self):
+        """Get table of recent contracts"""
+        conn = sqlite3.connect(self.db_path)
+        
+        query = '''
+            SELECT 
+                recipient_name,
+                award_amount,
+                awarding_agency,
+                award_date,
+                competition_type,
+                substr(description, 1, 100) as description
+            FROM contracts 
+            WHERE award_date >= date('now', '-30 days')
+            ORDER BY award_date DESC
+            LIMIT 50
+        '''
+        
+        df = pd.read_sql_query(query, conn)
+        conn.close()
+        
+        if df.empty:
+            return "<p>No contracts in the last 30 days</p>"
+        
+        # Format amounts
+        df['award_amount'] = df['award_amount'].apply(lambda x: f"${x:,.0f}")
+        
+        # Rename columns for display
+        df.columns = ['Company', 'Amount', 'Agency', 'Date', 'Competition', 'Description']
+        
+        return df.to_html(classes='table', index=False, escape=False)
+    
     def get_agency_risk_analysis(self):
         """Analyze agencies by risk factors (last 12 months)"""
         conn = sqlite3.connect(self.db_path)
@@ -473,6 +505,20 @@ CRONYISM_DASHBOARD_HTML = """
         </div>
         
         <div class="alerts-section">
+            <h3>📋 Recent Contracts (Last 30 Days)</h3>
+            <div id="recent-contracts-container">
+                <p>Loading recent contracts...</p>
+            </div>
+        </div>
+        
+        <div class="alerts-section">
+            <h3>📋 Recent Contracts (Last 30 Days)</h3>
+            <div id="recent-contracts-container">
+                <p>Loading recent contracts...</p>
+            </div>
+        </div>
+        
+        <div class="alerts-section">
             <h3>👁️ Watchlist Companies</h3>
             <table class="watchlist-table">
                 <thead>
@@ -682,6 +728,42 @@ CRONYISM_DASHBOARD_HTML = """
                 location.reload();
             }, 500);
         }
+        
+        // Load recent contracts
+        function loadRecentContracts() {
+            fetch('/api/recent-contracts')
+                .then(response => response.json())
+                .then(data => {
+                    let html = '<table class="watchlist-table"><thead><tr>';
+                    html += '<th>Company</th><th>Amount</th><th>Agency</th><th>Date</th><th>Competition</th><th>Description</th>';
+                    html += '</tr></thead><tbody>';
+                    
+                    if (data.length === 0) {
+                        html += '<tr><td colspan="6" style="text-align:center; padding:20px;">No contracts in the last 30 days. Run data collection to update.</td></tr>';
+                    } else {
+                        data.forEach(contract => {
+                            html += '<tr>';
+                            html += `<td><strong>${contract.recipient_name}</strong></td>`;
+                            html += `<td>$${(contract.award_amount/1000000).toFixed(2)}M</td>`;
+                            html += `<td style="font-size:0.85em;">${contract.awarding_agency}</td>`;
+                            html += `<td>${contract.award_date}</td>`;
+                            html += `<td style="font-size:0.85em;"><span class="risk-medium">${contract.competition_type || 'N/A'}</span></td>`;
+                            html += `<td style="font-size:0.8em;">${contract.description ? contract.description.substring(0, 70) + '...' : 'No description'}</td>`;
+                            html += '</tr>';
+                        });
+                    }
+                    
+                    html += '</tbody></table>';
+                    document.getElementById('recent-contracts-container').innerHTML = html;
+                })
+                .catch(error => {
+                    document.getElementById('recent-contracts-container').innerHTML = 
+                        '<p style="color:red;">Error loading recent contracts: ' + error + '</p>';
+                });
+        }
+        
+        // Load recent contracts on page load
+        window.addEventListener('DOMContentLoaded', loadRecentContracts);
         
         // Auto-refresh every 5 minutes
         setInterval(() => {
